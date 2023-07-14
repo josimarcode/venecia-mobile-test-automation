@@ -13,14 +13,11 @@ public class LoginTo implements Task {
     private final String email;
     private final String password;
 
-    // Constructor con el parámetro
     public LoginTo(String email, String password) {
         this.email = email;
         this.password = password;
     }
-
-    // Método factory para crear una instancia de la tarea con el parámetro
-    public static Performable conParametro(String email, String password) {
+    public static Performable login(String email, String password) {
         return Tasks.instrumented(LoginTo.class, email,password);
     }
 

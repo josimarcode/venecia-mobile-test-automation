@@ -4,9 +4,11 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.annotations.CastMember;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 import questions.LoggedInQuestions;
@@ -20,7 +22,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LogInSteps {
 
-
+    @CastMember(name = "Josimar the Trainer")
+    Actor Josimar;
    @Managed(driver = "Appium")
     public WebDriver hisMobileDevice;
 
@@ -29,17 +32,13 @@ public class LogInSteps {
         OnStage.setTheStage(new OnlineCast());
     }
 
-
     @Given("I am on the login view")
     public void i_am_on_the_login_view() {
-        theActorCalled("Josimar")
-                .attemptsTo(new NavigateTo());
+        theActorCalled("Josimar").attemptsTo(new NavigateTo());
     }
     @When("I login with {string} and {string}")
     public void i_login_with_and(String email, String password) {
-     theActorInTheSpotlight().attemptsTo(
-             new LoginTo(email,password)
-     );
+     theActorInTheSpotlight().attemptsTo(LoginTo.login(email,password));
 
     }
     @Then("I should see a flash message saying {string}")

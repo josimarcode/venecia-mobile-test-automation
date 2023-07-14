@@ -9,4 +9,5 @@ import org.junit.runner.RunWith;
         glue = {"steps"},
         tags = "@HappyPath")
 public class TestRunner {
+    //snippets = CucumberOptions.SnippetType.CAMELCASE
 }
